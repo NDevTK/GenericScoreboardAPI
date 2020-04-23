@@ -1,0 +1,83 @@
+    
+<html>
+    <head>
+    <title>Scoreboard</title>
+    <meta name="author" content="NDev">
+    <link rel="shortcut icon" href="https://ndev.tk/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://ndev.tk/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://game.ndev.tk/main.css">
+    <!-- Bootstrap 4.4.1 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.27/bootstrap-native-v4.min.js" integrity="sha384-a+JsMzT6HrD0E3J4MtAOfQFyYPy+6wxP+0+/F7miYZUca8YqiP+cvafmQayId7wg" crossorigin="anonymous"></script>
+    <!-- Firebase -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-firestore.js"></script>
+    <!-- Custom -->
+    <script src="scoreboard.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" style="color:red">
+    <img src="https://ndev.tk/icon.png" class="d-inline-block align-top" alt="">Scoreboard</a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="https://gs.ndev.tk">Main</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/NDevTK/CaptchaGame">Code</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://ndev.tk">HUB</a>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mgr">
+                Scoreboard Manager
+            </button>
+        </li>
+      </ul>  
+    </nav>
+
+    <h1 style="text-align: center" id="title">Scoreboard</h1>
+
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Score</th>
+        </tr>
+      </thead>
+      <tbody id="scoreboard"></tbody>
+    </table>
+      
+      <!-- Scoreboard MGR -->
+      <div class="modal fade" id="mgr" tabindex="-1" role="dialog" aria-labelledby="mgrTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mgrTitle">Scoreboard Manager</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div style="display:none" id="body">
+                    <table class="table" id="mgrTable">
+                      <a id="empty">Click create to create a Scoreboard :D</a>
+                    </table>
+                </div>
+              <div id="firebaseui-auth-container"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="dbkey" onclick="KEY()" disabled="true" class="btn btn-primary">Get DB Key</button>
+              <button type="button" id="rm" onclick="removeScoreboard()" disabled="true" class="btn btn-danger">Remove</button>
+              <button type="button" id="create" onclick="createScoreboard()" disabled="true" class="btn btn-success">Create</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close :D</button>
+            </div>
+          </div>
+       </div>
+    </div>
+  </body>
+</html>
