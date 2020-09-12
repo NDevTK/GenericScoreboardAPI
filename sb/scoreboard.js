@@ -108,7 +108,7 @@ function SyncScores(board) {
 }
 
 function clearBoard() {
-	if(window.hasOwnProperty("scoreboard")) scoreboard.innerHTML = null;
+	scoreboard.innerHTML = null;
 }
 
 async function UI(boardID){
