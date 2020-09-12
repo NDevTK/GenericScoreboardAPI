@@ -1,3 +1,7 @@
+/*jshint esversion: 8 */
+
+// NDev 2020 https://github.com/NDevTK/GenericScoreboardAPI
+
 const express = require('express');
 const app = express();
 
@@ -34,7 +38,7 @@ function increment(board, username = "Unnamed Player", number = 1) {
 		player.set({
 			score: number
 		});
-	})
+	});
 	return "OK";
 }
 
@@ -51,18 +55,18 @@ app.post('/api', async (req, res, next) => {
 async function AuthUser(token) {
 	if(!token) return null;
 	let auth = token.split("+");
-	if(auth.length !== 2) return null
+	if(auth.length !== 2) return null;
 	let board = await getBoard(auth[0]);
-	if(board === null) return null
+	if(board === null) return null;
 	let keys = await board.collection("secure").doc("keys").get();
-	if(auth[1] !== keys.data().token) return null
+	if(auth[1] !== keys.data().token) return null;
 	return board;
 }
 
 async function getBoard(ID) {
 	let board = db.collection("boards").doc(ID);
 	let Snapshot = await board.get();
-	return (Snapshot.exists) ? board : null
+	return (Snapshot.exists) ? board : null;
 }
 
 module.exports = app;
