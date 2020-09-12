@@ -1,3 +1,7 @@
+/*jshint esversion: 8 */
+
+// NDev 2020 https://github.com/NDevTK/GenericScoreboardAPI/tree/master/sb
+
 var config = {
     apiKey: "AIzaSyBe6FNxH0rYvFHYZKQWjWD_KFyghYGio1Y",
     authDomain: "genericscoreboardapi.firebaseapp.com",
@@ -8,10 +12,14 @@ firebase.initializeApp(config);
 
 var db = firebase.firestore();
 
-isAdmin = false;
+var isAdmin = false;
 
-mgrData = [];
-mgrRows = [];
+var mgrData = [];
+var mgrRows = [];
+var userId = null;
+var ID = null;
+var board = null;
+var rows = [];
 
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -19,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
         LoginUI();
     }
-    mgr = document.getElementById("mgr").modalTrigger;
+    var mgr = document.getElementById("mgr").modalTrigger;
     if(location.hash.length < 10) mgr.Modal.show();
 });
 
@@ -27,13 +35,13 @@ if(location.hash.length > 10) LoadObjectID(location.hash.split("#")[1]);
 
 function createScoreboard() {
     let name = prompt("Enter name of scoreboard:", "Scoreboard");
-    if(name === null) return
+    if(name === null) return;
     if(name === "") name = "Scorebord";
     db.collection("boards").doc().set({
         owner: userId,
         name: name
     });
-};
+}
 
 function KEY() {
 	prompt("Scoreboard Token :D", ID+"+"+setKey(board));
@@ -43,12 +51,12 @@ function setKey(board, key = random()) {
 	board.collection("secure").doc("keys").set({
         token: key
     });
-	return key
+	return key;
 }
 
 function onRowClicked(e) {
     LoadObjectID(e.target.parentNode.children[1].innerText);
-};
+}
 
 function random(length = 30) {
     var charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -96,7 +104,7 @@ function SyncScores(board) {
                     break;
             }
         });
-    })
+    });
 }
 
 function clearBoard() {
@@ -113,7 +121,7 @@ async function UI(boardID){
             document.getElementById("mgrTable").getElementsByClassName("text-primary")[0].className = "";
         } catch (error) {
 
-        }; 
+        } 
         mgrRows[boardID].className = "text-primary";
     }
     ID = boardID;
@@ -122,7 +130,7 @@ async function UI(boardID){
 
 async function LoadObjectID(boardID) {
     UI(boardID);
-	board = db.collection("boards").doc(boardID);
+	  board = db.collection("boards").doc(boardID);
     board.onSnapshot(function(doc) {
 		if(!doc.exists) {
 			return alert("Board does not exist :(");
@@ -176,12 +184,12 @@ async function removeRow() {
         document.getElementById("empty").style.display = "unset";
         document.getElementById("dbkey").disabled = true;
         document.getElementById("rm").disabled = true;
-    };
+    }
 }
 
 async function LoginUI() {
-    if(firebase.auth().currentUser) return
-    ui = new firebaseui.auth.AuthUI(firebase.auth());
+    if(firebase.auth().currentUser) return;
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#firebaseui-auth-container', {
         signInOptions: [
             firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
