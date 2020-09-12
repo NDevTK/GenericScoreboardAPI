@@ -109,6 +109,7 @@ function SyncScores(board) {
 
 function clearBoard() {
 	scoreboard.innerHTML = null;
+	title.innerText = "Scoreboard";
 }
 
 async function UI(boardID){
