@@ -1,4 +1,4 @@
-# unmaintained project
+# Unmaintained project
 
 # GenericScoreboardAPI
 Simple way to create a scoreboard without signups  
