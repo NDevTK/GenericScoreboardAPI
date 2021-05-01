@@ -1,3 +1,5 @@
+# unmaintained project
+
 # GenericScoreboardAPI
 Simple way to create a scoreboard without signups  
 Example: https://github.com/NDevTK/CaptchaGame  
