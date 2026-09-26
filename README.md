@@ -3,7 +3,7 @@
 # GenericScoreboardAPI
 Simple way to create a scoreboard without signups  
 Example: https://github.com/NDevTK/CaptchaGame  
-POST Request https://gsapi.ndev.tk/api JSON  
+POST Request https://localhost/api JSON  
 token: boardID+privateKey  
 username: bob  
 increment: 1  
@@ -11,7 +11,7 @@ increment: 1
 # Example Javascript
 ```
 async function increment(token, username = "Unnamed Player", number = 1) {
-    let r = await fetch('https://gsapi.ndev.tk/api', {
+    let r = await fetch('https://localhost/api', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
