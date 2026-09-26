@@ -1,3 +1,2 @@
-Contact: https://discord.com/invite/kFRm5Dv
-Encryption: https://ndev.tk/NDevTK.txt
+Contact: ndevtk@protonmail.com
 Preferred-Languages: en
